@@ -1,0 +1,17 @@
+[project]
+name = "aventura-rd-backend"
+version = "0.1.0"
+description = "AventuraRD API REST"
+authors = [
+    {name = "Spencer",email = "Spencerrrrd@gmail.com"}
+]
+license = "MIT"
+readme = "README.md"
+requires-python = "^3.11"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
