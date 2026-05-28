@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app import models
+from app.routers import categorias, ofertas, reservas
 
 # Crear todas las tablas en la base de datos
 Base.metadata.create_all(bind=engine)
@@ -12,7 +13,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configurar CORS para que el Frontend pueda consumir la API
+# Configurar CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,6 +21,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Registrar routers
+app.include_router(categorias.router)
+app.include_router(ofertas.router)
+app.include_router(reservas.router)
 
 @app.get("/")
 def root():
