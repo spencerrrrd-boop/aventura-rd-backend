@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app import models
-from app.routers import categorias, ofertas, reservas
+from app.routers import categorias, ofertas, reservas, auth, admin
 
 # Crear todas las tablas en la base de datos
 Base.metadata.create_all(bind=engine)
@@ -22,10 +22,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Registrar routers
+# Rutas públicas
 app.include_router(categorias.router)
 app.include_router(ofertas.router)
 app.include_router(reservas.router)
+
+# Rutas de autenticación
+app.include_router(auth.router)
+
+# Rutas de administración (protegidas con JWT)
+app.include_router(admin.router)
 
 @app.get("/")
 def root():
