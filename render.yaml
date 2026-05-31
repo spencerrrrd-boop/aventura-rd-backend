@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: aventura-rd-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DB_HOST
+        value: aventura-rd-db-spencerrrrd-b42a.b.aivencloud.com
+      - key: DB_PORT
+        value: 25232
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
+      - key: SSL_MODE
+        value: REQUIRED
+      - key: SECRET_KEY
+        sync: false
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 60
+      - key: APP_NAME
+        value: AventuraRD API
+      - key: DEBUG
+        value: false
