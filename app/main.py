@@ -17,6 +17,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "https://aventura-rd-frontend.onrender.com",
         "https://astonishing-banoffee-43cee5.netlify.app",
         "http://localhost:3000",
         "*"

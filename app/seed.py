@@ -31,14 +31,16 @@ def seed_admin(db):
 def run_seed():
     db = SessionLocal()
     try:
-        print("🌱 Actualizando administrador...")
-        seed_admin(db)
-        print("🎉 Completado exitosamente")
+        print("🔧 Actualizando imagen del Zipline...")
+        oferta = db.query(Oferta).filter(Oferta.id == 3).first()
+        if oferta:
+            oferta.imagen_url = "https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?w=800"
+            db.commit()
+            print(f"✅ Imagen actualizada: {oferta.imagen_url}")
+        else:
+            print("❌ Oferta no encontrada")
     except Exception as e:
         print(f"❌ Error: {e}")
         db.rollback()
     finally:
         db.close()
-
-if __name__ == "__main__":
-    run_seed()
